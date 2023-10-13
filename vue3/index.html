@@ -1,0 +1,20 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="body">
+    <div id="app">
+        {{ message }}
+    </div>
+    
+</div>
+
+<script>
+    
+    Vue.createApp({
+        data() {
+            return {
+                message: 10
+            }
+        }
+    }).mount('#app')
+    
+</script>

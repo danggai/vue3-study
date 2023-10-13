@@ -1,0 +1,24 @@
+<div id="app">
+    <button v-on:click="minusCount">-</button>
+        {{ count }}
+    <button v-on:click="addCount">+</button>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            addCount() {
+                this.count++ // createApp의 count라는 데이터로 접근한다는 뜻
+            },
+            minusCount() {
+                this.count--
+            }
+        }
+    }).mount('#app')
+</script>

@@ -1,0 +1,44 @@
+<style>
+    .primary {
+        color: coral;
+    }
+</style>
+
+<div id="app">
+    <h1>클래스 바인딩</h1>
+    <div class="primary">데이터 바인딩 예제</div>
+    <!-- v-bind:class와 :class는 동일어. 축약어로서 사용함. -->
+    <div v-bind:class="textClass">데이터 바인딩 예제</div>
+    <div :class="textClass">데이터 바인딩 예제</div>
+    
+    <hr>
+
+    <h1>아이디 스마일</h1>
+    (아이디 바인딩)<br><br>
+
+    <section id="tab1" style="color: red">
+        히카레 앗테 손자이 츠즈루 세카이 나라세타나라
+    </section>
+
+    <section :id="setionId" :style="setionStyle">
+        네에 코노마마데 마마데 이라레루카나
+    </section>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                textClass: 'primary',
+                setionId: 'tab1',
+                setionStyle: { color: 'red'}
+            }
+        },
+    }).mount('#app')
+</script>
+
+<!-- 
+v-bind -> :
+v-on -> @
+ -->

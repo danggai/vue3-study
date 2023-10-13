@@ -1,0 +1,45 @@
+<div id="app">
+    <!-- html은 대소문자 구분을 안함. 고로 appTitle 말고 app-title로 변형하여 표기 -->
+    <app-header v-bind:app-title="headerText"></app-header>
+    <app-contents v-on:login="receive"></app-contents>
+</div>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const appHeader = {
+        props: ["appTitle"],
+        template: "<h1> {{ appTitle }} </h1>",
+    }
+
+    const appContents = {
+        template:`
+        <p>
+            <button v-on:click="sendLoginEvent">로그인</button>
+        </p>
+        `,
+        methods: {
+            sendLoginEvent() {
+                this.$emit("login")
+            }
+        }
+    }
+
+    Vue.createApp({
+        components: {
+            'app-header': appHeader,
+            'app-contents': appContents
+        },
+        methods: {
+            receive() {
+                console.log("login event received")
+                this.headerText = "안녕하세용"
+            }
+        },
+        data() {
+            return {
+                headerText: "로그인 하세요"
+            }
+        }
+    }).mount('#app')
+</script> 
