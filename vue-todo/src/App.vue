@@ -17,6 +17,7 @@
           :todoItem="todoItem"
           :index="index"
           @remove="removeTodoItem"
+          @toggle="toggleTodoItem"
         ></todo-list-item>
       </div>
     </main>
@@ -30,23 +31,29 @@ import TodoListItem from "./components/TodoListItem.vue"
 
 const STROAGE_KEY = "vue-todo-ts-v1"
 const storage = {
-  save(todoItems: any[]) {
+  save(todoItems: Todo[]) {
     const parsed = JSON.stringify(todoItems)
     localStorage.setItem(STROAGE_KEY, parsed)
   },
 
-  fetch() {
+  fetch(): Todo[] {
     const todoItems = localStorage.getItem(STROAGE_KEY) || "[]"
-    const result = JSON.parse(todoItems)
+    const result = JSON.parse(todoItems).sort()
     return result
   },
+}
+
+export interface Todo {
+  title: string
+  done: boolean
+  // id: number
 }
 
 export default {
   components: { TodoInput, TodoListItem },
   setup() {
     const todoText = ref("")
-    const todoItems = ref([] as any[])
+    const todoItems = ref([] as Todo[])
 
     // const updateTodoText = (value: string) => {
     //   todoText.value = value
@@ -57,8 +64,11 @@ export default {
     }
 
     const addTodoItem = () => {
-      const value = todoText.value
-      todoItems.value.push(value)
+      const todo: Todo = {
+        title: todoText.value,
+        done: false,
+      }
+      todoItems.value.push(todo)
       storage.save(todoItems.value)
       initTodoText()
     }
@@ -68,11 +78,24 @@ export default {
     }
 
     const fetchTodoItems = () => {
-      todoItems.value = storage.fetch()
+      todoItems.value = storage.fetch().sort((a, b) => {
+        if (a.title < b.title) return -1
+        if (a.title > b.title) return 1
+        return 0
+      })
     }
 
     const removeTodoItem = (index: number) => {
       todoItems.value.splice(index, 1)
+      storage.save(todoItems.value)
+    }
+
+    const toggleTodoItem = (todoItem: Todo, index: number) => {
+      console.log(todoItem)
+      todoItems.value.splice(index, 1, {
+        ...todoItem,
+        done: !todoItem.done,
+      })
       storage.save(todoItems.value)
     }
 
@@ -85,6 +108,7 @@ export default {
       addTodoItem,
       fetchTodoItems,
       removeTodoItem,
+      toggleTodoItem,
     }
   },
 }

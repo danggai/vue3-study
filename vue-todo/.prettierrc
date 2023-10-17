@@ -3,5 +3,11 @@
   "tabWidth": 2,
   "singleQuote": false,
   "trailingComma": "all",
-  "semi": false
+  "semi": false,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "printWidth": 20
+  }
 }
