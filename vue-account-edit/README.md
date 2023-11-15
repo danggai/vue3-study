@@ -1,4 +1,4 @@
-# learn-vue-js
+# vue-account-edit
 
 ## Project setup
 ```

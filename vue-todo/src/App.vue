@@ -4,21 +4,13 @@
       <h1>Vue 3 Todo With Typescript</h1>
     </header>
     <main>
-      <todo-input
-        :item="todoText"
-        @input="updateTodoText"
-        @add="addTodoItem"
-      ></todo-input>
+      <todo-input :item="todoText" @input="updateTodoText"
+        @add="addTodoItem"></todo-input>
       <!-- <todo-input v-model="todoText" @add="addTodoItem"></todo-input> -->
       <div>
-        <todo-list-item
-          v-for="(todoItem, index) in todoItems"
-          :key="index"
-          :todoItem="todoItem"
-          :index="index"
-          @remove="removeTodoItem"
-          @toggle="toggleTodoItem"
-        ></todo-list-item>
+        <todo-list-item v-for="(todoItem, index) in todoItems" :key="index"
+          :todoItem="todoItem" :index="index" @remove="removeTodoItem"
+          @toggle="toggleTodoItem"></todo-list-item>
       </div>
     </main>
   </div>
