@@ -1,0 +1,18 @@
+{
+  "cwd": "D:\\git\\vue",
+  "type": [
+    "web"
+  ],
+  "name": "framework7-test",
+  "framework": "vue",
+  "template": "single-view",
+  "bundler": "vite",
+  "cssPreProcessor": "less",
+  "theming": {
+    "customColor": true,
+    "color": "#5f52da",
+    "darkMode": true,
+    "iconFonts": true
+  },
+  "customBuild": false
+}
